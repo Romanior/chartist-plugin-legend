@@ -28,6 +28,8 @@
         onClick: null
     };
 
+    var letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
     Chartist.plugins = Chartist.plugins || {};
 
     Chartist.plugins.legend = function (options) {
@@ -89,13 +91,13 @@
             // Loop through all legends to set each name in a list item.
             legendNames.forEach(function (legend, i) {
                 var li = document.createElement('li');
-                li.className = 'ct-series-' + i;
+                li.className = 'ct-legend__item ct-series-' + letters[i];
                 // Append specific class to a legend element, if viable classes are given
                 if (classNamesViable) {
                    li.className += ' ' + options.classNames[i];
                 }
                 li.setAttribute('data-legend', i);
-                li.textContent = legend.name || legend;
+                li.textContent = legend.meta || legend.name || legend;
                 legendElement.appendChild(li);
             });
             chart.container.appendChild(legendElement);
